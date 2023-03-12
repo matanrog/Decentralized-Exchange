@@ -164,6 +164,7 @@ describe('Token', () => {
          })
 
         describe('Failure', () => { 
+            //Attempt to transfer too many tokens
             it('Rejects insufficient amounts', async () => {
 		        const invalidAmount = tokenSup(100000000)
 		        await expect(token.connect(exchange).transferFrom(deployer.address, receiver.address, invalidAmount)).to.be.reverted;
