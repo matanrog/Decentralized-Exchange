@@ -15,8 +15,8 @@ async function main() {
     const accounts = await ethers.getSigners();
 
     // Fetch network
-    const { chainId } = await ethers.provider.getNetwork()
-    console.log("Using chainId:", chainId)
+    const { chainId } = await ethers.provider.getNetwork();
+    console.log("Using chainId:", chainId);
 
     const HIT = await ethers.getContractAt('Token',config[chainId].HIT.address);
     console.log(`HIT token fetched: ${HIT.address}\n`);
