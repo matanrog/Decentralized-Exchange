@@ -28,10 +28,8 @@ function App() {
       window.location.reload()
     })
 
-    // Fetch current account & balance from Metamask when changed
-    window.ethereum.on('accountsChanged', () => {
-      loadAccount(provider, dispatch)
-    })
+    // Fetch current account & balance from Metamask
+    await loadAccount(provider, dispatch)
 
     // Load token smart contracts
     const HIT = config[chainId].HIT
