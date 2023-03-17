@@ -88,7 +88,7 @@ export const transferTokens =  async (provider, exchange, transferType, token, a
 
     transaction = await token.connect(signer).approve(exchange.address, amountToTransfer)
     await transaction.wait()
-    transaction = await exchange.connect(signer).depositToken(token.address, amountToTransfer)
+    transaction = await exchange.connect(signer).depositTokens(token.address, amountToTransfer)
 
     await transaction.wait()
 
