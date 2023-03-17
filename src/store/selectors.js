@@ -6,6 +6,7 @@ import { ethers } from 'ethers';
 const GREEN = '#25CE8F'
 const RED = '#F45353'
 
+
 const account = state => get(state, 'provider.account')
 const tokens = state => get(state, 'tokens.contracts')
 
@@ -75,17 +76,16 @@ const decorateMyOpenOrder = (order, tokens) => {
   })
 }
 
-
 const decorateOrder = (order, tokens) => {
   let token0Amount, token1Amount
 
-  // Note: HIT should be considered token0, mETH is considered token1
-  // Example: Giving mETH in exchange for HIT
+  // Note: DApp should be considered token0, mETH is considered token1
+  // Example: Giving mETH in exchange for DApp
   if (order.tokenGive === tokens[1].address) {
-    token0Amount = order.amountGive // The amount of HIT we are giving
+    token0Amount = order.amountGive // The amount of DApp we are giving
     token1Amount = order.amountGet // The amount of mETH we want...
   } else {
-    token0Amount = order.amountGet // The amount of HIT we want
+    token0Amount = order.amountGet // The amount of DApp we want
     token1Amount = order.amountGive // The amount of mETH we are giving...
   }
 
@@ -102,6 +102,7 @@ const decorateOrder = (order, tokens) => {
     formattedTimestamp: moment.unix(order.timestamp).format('h:mm:ssa d MMM D')
   })
 }
+
 
 // ------------------------------------------------------------------------------
 // ALL FILLED ORDERS
@@ -167,7 +168,7 @@ const tokenPriceClass = (tokenPrice, orderId, previousOrder) => {
   }
 }
 
-
+// ------------------------------------------------------------------------------
 // MY FILLED ORDERS
 
 export const myFilledOrdersSelector = createSelector(
@@ -220,7 +221,6 @@ const decorateMyFilledOrder = (order, account, tokens) => {
     orderSign: (orderType === 'buy' ? '+' : '-')
   })
 }
-
 
 
 // ------------------------------------------------------------------------------
@@ -284,6 +284,7 @@ const decorateOrderBookOrder = (order, tokens) => {
     orderFillAction: (orderType === 'buy' ? 'sell' : 'buy')
   })
 }
+
 
 // ------------------------------------------------------------------------------
 // PRICE CHART
